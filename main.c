@@ -37,6 +37,7 @@ int main() {
 
     xWon = checkWin(100);
     if (xWon == 0) {
+      renderBrd();
       printf("X WON!! ");
       gameFinished = 0;
       break;
@@ -61,6 +62,7 @@ int main() {
     }
     oWon = checkWin(200);
     if (oWon == 0) {
+      renderBrd();
       printf("O WON!!");
       gameFinished = 0;
       break;
