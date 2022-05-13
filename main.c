@@ -8,21 +8,43 @@ void renderBrd();
 int main() {
   char playing = 'Y';
   int pos;
+  char validPos = 'N';
 
   if (playing == 'Y') {
     emptyBrd();
   }
 
   while (playing == 'Y') {
-    renderBrd();
+    validPos = 'N';
+    while (validPos == 'N') {
+      renderBrd();
 
-    printf("Please enter where you want to place X ");
-    scanf("%d", &pos);
+      printf("Please enter where you want to place X ");
+      scanf("%d", &pos);
 
-    for (int y = 0; y < 3; y++) {
-      for (int x = 0; x < 3; x++) {
-        if (pos == board[y][x]) {
-          board[y][x] = 100;
+      for (int y = 0; y < 3; y++) {
+        for (int x = 0; x < 3; x++) {
+          if (pos == board[y][x]) {
+            board[y][x] = 100;
+            validPos = 'Y';
+          }
+        }
+      }
+    }
+
+    validPos = 'N';
+    while (validPos == 'N') {
+      renderBrd();
+
+      printf("Please enter where you want to place O ");
+      scanf("%d", &pos);
+
+      for (int y = 0; y < 3; y++) {
+        for (int x = 0; x < 3; x++) {
+          if (pos == board[y][x]) {
+            board[y][x] = 200;
+            validPos = 'Y';
+          }
         }
       }
     }
@@ -40,6 +62,8 @@ void emptyBrd() {
 }
 
 void renderBrd() {
+  printf("\n");
+  
   for (int y = 0; y < 3; y++) {
     printf("| ");
     for (int x = 0; x < 3; x++) {
@@ -57,4 +81,6 @@ void renderBrd() {
       printf("\n");
     }
   }
+
+  printf("\n");
 }
