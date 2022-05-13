@@ -7,19 +7,16 @@ void renderBrd();
 int checkWin();
 
 int main() {
-  char playing = 'Y';
   int pos;
   char validPos = 'N';
   int leftpos = 9;
   char xWon;
   char oWon;
-  int gamedone = 0;
+  int gameFinished = 1;
 
-  if (playing == 'Y') {
-    emptyBrd();
-  }
+  emptyBrd();
 
-  while (playing == 'Y') {
+  while (gameFinished != 0) {
     validPos = 'N';
     while (validPos == 'N' && leftpos > 0) {
       renderBrd();
@@ -40,9 +37,9 @@ int main() {
 
     xWon = checkWin(100);
     if (xWon == 0) {
-      gamedone = 1;
       printf("X WON!! ");
-      goto newgame;
+      gameFinished = 0;
+      break;
     }
 
     validPos = 'N';
@@ -64,23 +61,12 @@ int main() {
     }
     oWon = checkWin(200);
     if (oWon == 0) {
-      gamedone = 1;
       printf("O WON!!");
-      goto newgame;
+      gameFinished = 0;
+      break;
     }
-
-    newgame:
-      if (gamedone == 1) {
-        printf("\nDo you want to play another game? (Y/N) ");
-        scanf("%d", &playing);
-
-        if (playing == 'Y') {
-          gamedone = 0;
-        } else {
-          break;
-        }
-      }
   }
+
   return 0;
 }
 
